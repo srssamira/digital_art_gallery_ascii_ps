@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: galeria_de_arte_digital
