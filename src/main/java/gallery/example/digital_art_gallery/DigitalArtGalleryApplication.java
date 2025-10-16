@@ -1,4 +1,4 @@
-package gallery.example.digital_art_gallery.app;
+package gallery.example.digital_art_gallery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
