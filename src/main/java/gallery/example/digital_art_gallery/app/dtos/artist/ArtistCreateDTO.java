@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 public class ArtistCreateDTO {
 
     private String name;
@@ -16,4 +13,62 @@ public class ArtistCreateDTO {
     private String twitter;
     private String website;
 
+    public ArtistCreateDTO() {
+    }
+    public ArtistCreateDTO(String name, String bio, String email, String instagram, String twitter, String website) {
+        this.name = name;
+        this.bio = bio;
+        this.email = email;
+        this.instagram = instagram;
+        this.twitter = twitter;
+        this.website = website;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 }
