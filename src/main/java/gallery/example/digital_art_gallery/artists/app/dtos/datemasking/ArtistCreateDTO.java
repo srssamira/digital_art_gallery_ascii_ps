@@ -1,4 +1,4 @@
-package gallery.example.digital_art_gallery.artists.app.dtos;
+package gallery.example.digital_art_gallery.artists.app.dtos.datemasking;
 
 public class ArtistCreateDTO {
 

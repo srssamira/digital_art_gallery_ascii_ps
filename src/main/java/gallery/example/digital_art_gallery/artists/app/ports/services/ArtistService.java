@@ -1,7 +1,8 @@
 package gallery.example.digital_art_gallery.artists.app.ports.services;
 
-import gallery.example.digital_art_gallery.artists.app.dtos.ArtistCreateDTO;
-import gallery.example.digital_art_gallery.artists.app.dtos.ArtistResponseDTO;
+import gallery.example.digital_art_gallery.artists.app.dtos.datemasking.ArtistCreateDTO;
+import gallery.example.digital_art_gallery.artists.app.dtos.datemasking.ArtistResponseDTO;
+import gallery.example.digital_art_gallery.artists.domain.exceptions.ArtistNotFoundException;
 import gallery.example.digital_art_gallery.artists.infra.mappers.ArtistMapper;
 import gallery.example.digital_art_gallery.artists.infra.entities.ArtistEntity;
 import gallery.example.digital_art_gallery.artists.infra.adapters.ArtistJpaAdapterOut;
@@ -34,14 +35,14 @@ public class ArtistService implements ArtistManagementPortIn {
     @Override
     public ArtistResponseDTO getArtistById(Long artistId) {
         ArtistEntity artistEntity = artistRepository.findById(artistId)
-                .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
+                .orElseThrow(() -> new ArtistNotFoundException(artistId));
         return ArtistMapper.toResponse(artistEntity);
     }
 
     @Override
     public ArtistResponseDTO updateArtist(Long artistId, ArtistCreateDTO updatedArtist) {
         ArtistEntity existingArtist = artistRepository.findById(artistId)
-                .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
+                .orElseThrow(() -> new ArtistNotFoundException(artistId));
 
         existingArtist.setName(updatedArtist.getName());
         existingArtist.setBio(updatedArtist.getBio());
@@ -57,7 +58,7 @@ public class ArtistService implements ArtistManagementPortIn {
     @Override
     public void deleteArtist(Long artistId) {
         ArtistEntity existingArtist = artistRepository.findById(artistId)
-                .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
+                .orElseThrow(() -> new ArtistNotFoundException(artistId));
         artistRepository.delete(existingArtist);
     }
 

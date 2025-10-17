@@ -1,7 +1,7 @@
 package gallery.example.digital_art_gallery.artists.app.ports.controllers;
 
-import gallery.example.digital_art_gallery.artists.app.dtos.ArtistCreateDTO;
-import gallery.example.digital_art_gallery.artists.app.dtos.ArtistResponseDTO;
+import gallery.example.digital_art_gallery.artists.app.dtos.datemasking.ArtistCreateDTO;
+import gallery.example.digital_art_gallery.artists.app.dtos.datemasking.ArtistResponseDTO;
 import gallery.example.digital_art_gallery.artists.domain.ports.ArtistManagementPortIn;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package gallery.example.digital_art_gallery.artists.app.dtos;
+package gallery.example.digital_art_gallery.artists.app.dtos.datemasking;
 
-import gallery.example.digital_art_gallery.artworks.app.dtos.ArtWorkResponseDTO;
+import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkResponseDTO;
 
 import java.util.List;
 

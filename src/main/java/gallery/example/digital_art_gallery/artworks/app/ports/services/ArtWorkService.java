@@ -1,7 +1,7 @@
 package gallery.example.digital_art_gallery.artworks.app.ports.services;
 
-import gallery.example.digital_art_gallery.artworks.app.dtos.ArtWorkCreateDTO;
-import gallery.example.digital_art_gallery.artworks.app.dtos.ArtWorkResponseDTO;
+import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkCreateDTO;
+import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkResponseDTO;
 import gallery.example.digital_art_gallery.artworks.infra.adapters.ArtWorkJpaAdapterOut;
 import gallery.example.digital_art_gallery.artworks.infra.entities.ArtWorkEntity;
 import gallery.example.digital_art_gallery.artworks.infra.mappers.ArtWorkMapper;

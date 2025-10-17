@@ -1,8 +1,8 @@
 package gallery.example.digital_art_gallery.artists.infra.mappers;
 
-import gallery.example.digital_art_gallery.artists.app.dtos.ArtistCreateDTO;
-import gallery.example.digital_art_gallery.artists.app.dtos.ArtistResponseDTO;
-import gallery.example.digital_art_gallery.artworks.app.dtos.ArtWorkResponseDTO;
+import gallery.example.digital_art_gallery.artists.app.dtos.datemasking.ArtistCreateDTO;
+import gallery.example.digital_art_gallery.artists.app.dtos.datemasking.ArtistResponseDTO;
+import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkResponseDTO;
 import gallery.example.digital_art_gallery.artists.infra.entities.ArtistEntity;
 import gallery.example.digital_art_gallery.artworks.infra.mappers.ArtWorkMapper;
 

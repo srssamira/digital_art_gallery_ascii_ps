@@ -1,7 +1,7 @@
 package gallery.example.digital_art_gallery.artworks.domain.ports;
 
-import gallery.example.digital_art_gallery.artworks.app.dtos.ArtWorkCreateDTO;
-import gallery.example.digital_art_gallery.artworks.app.dtos.ArtWorkResponseDTO;
+import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkCreateDTO;
+import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkResponseDTO;
 
 import java.util.List;
 
