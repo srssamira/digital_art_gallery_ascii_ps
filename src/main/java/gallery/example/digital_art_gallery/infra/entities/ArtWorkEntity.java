@@ -13,11 +13,11 @@ public class ArtWorkEntity {
     private String imageUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artist_id")
+    @JoinColumn(name = "artist_id", nullable = false)
     private ArtistEntity artist;
 
-    public ArtWorkEntity() {
-    }
+
+    public ArtWorkEntity() {}
 
     public ArtWorkEntity(Long id, String title, String description, String imageUrl, ArtistEntity artist) {
         this.id = id;

@@ -13,16 +13,8 @@ public class ArtistCreateDTO {
     private String twitter;
     private String website;
 
-    public ArtistCreateDTO() {
-    }
-    public ArtistCreateDTO(String name, String bio, String email, String instagram, String twitter, String website) {
-        this.name = name;
-        this.bio = bio;
-        this.email = email;
-        this.instagram = instagram;
-        this.twitter = twitter;
-        this.website = website;
-    }
+    public ArtistCreateDTO() {}
+
 
     public String getName() {
         return name;
