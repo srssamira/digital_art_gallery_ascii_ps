@@ -10,6 +10,8 @@ import gallery.example.digital_art_gallery.infra.repositories.ArtistJpaRepositor
 import gallery.example.digital_art_gallery.services.ArtWorkService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArtWorkServiceImpl implements ArtWorkService {
 
@@ -34,6 +36,21 @@ public class ArtWorkServiceImpl implements ArtWorkService {
         ArtWorkEntity savedArtWork = artWorkJpaRepository.save(artWork);
 
         return ArtWorkMapper.toResponse(savedArtWork);
+    }
+
+    @Override
+    public List<ArtWorkResponseDTO> getAllArtWorks() {
+        List<ArtWorkEntity> artWorkEntities = artWorkJpaRepository.findAll();
+        return artWorkEntities.stream()
+                .map(ArtWorkMapper::toResponse)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public ArtWorkResponseDTO getArtWorkById(Long artWorkId) {
+        ArtWorkEntity artWorkEntity = artWorkJpaRepository.findById(artWorkId)
+                .orElseThrow(() -> new RuntimeException("Obra de arte com ID " + artWorkId + " não encontrada."));
+        return ArtWorkMapper.toResponse(artWorkEntity);
     }
 
 
