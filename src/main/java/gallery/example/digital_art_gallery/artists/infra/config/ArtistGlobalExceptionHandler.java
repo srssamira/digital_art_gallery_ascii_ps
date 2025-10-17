@@ -1,7 +1,7 @@
-package gallery.example.digital_art_gallery.artworks.infra.config;
+package gallery.example.digital_art_gallery.artists.infra.config;
 
-import gallery.example.digital_art_gallery.artists.app.dtos.globalexception.ErrorResponseDTO;
-import gallery.example.digital_art_gallery.artworks.domain.ArtWorkNotFoundException;
+import gallery.example.digital_art_gallery.artists.app.dtos.globalexception.ArtistErrorResponseDTO;
+import gallery.example.digital_art_gallery.artists.domain.exceptions.ArtistNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class ArtistGlobalExceptionHandler {
 
     // handler p exceções de dominio (404)
-    @ExceptionHandler(ArtWorkNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleNotFound(ArtWorkNotFoundException ex, HttpServletRequest request) {
+    @ExceptionHandler(ArtistNotFoundException.class)
+    public ResponseEntity<ArtistErrorResponseDTO> handleNotFound(ArtistNotFoundException ex, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
-        ErrorResponseDTO error = new ErrorResponseDTO(
+        ArtistErrorResponseDTO error = new ArtistErrorResponseDTO(
                 status.value(),
                 ex.getMessage(),
                 request.getRequestURI()
@@ -26,14 +26,14 @@ public class GlobalExceptionHandler {
 
     // handler p erros de validacao (400)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponseDTO> handleValidationExceptions(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<ArtistErrorResponseDTO> handleValidationExceptions(MethodArgumentNotValidException ex, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         String defaultMessage = ex.getBindingResult().getFieldError() != null
                 ? ex.getBindingResult().getFieldError().getDefaultMessage()
                 : "Erro de validação de dados.";
 
-        ErrorResponseDTO error = new ErrorResponseDTO(
+        ArtistErrorResponseDTO error = new ArtistErrorResponseDTO(
                 status.value(),
                 "Requisição inválida: " + defaultMessage,
                 request.getRequestURI()
@@ -43,9 +43,9 @@ public class GlobalExceptionHandler {
 
     // handler generico (500)
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDTO> handleGenericException(HttpServletRequest request) {
+    public ResponseEntity<ArtistErrorResponseDTO> handleGenericException(HttpServletRequest request) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        ErrorResponseDTO error = new ErrorResponseDTO(
+        ArtistErrorResponseDTO error = new ArtistErrorResponseDTO(
                 status.value(),
                 "Um erro inesperado ocorreu. Contate o administrador.",
                 request.getRequestURI()

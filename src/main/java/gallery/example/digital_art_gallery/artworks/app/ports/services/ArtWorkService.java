@@ -1,10 +1,12 @@
 package gallery.example.digital_art_gallery.artworks.app.ports.services;
 
+import gallery.example.digital_art_gallery.artists.domain.exceptions.ArtistNotFoundException;
 import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkCreateDTO;
 import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWorkResponseDTO;
 import gallery.example.digital_art_gallery.artworks.infra.adapters.ArtWorkJpaAdapterOut;
 import gallery.example.digital_art_gallery.artworks.infra.entities.ArtWorkEntity;
 import gallery.example.digital_art_gallery.artworks.infra.mappers.ArtWorkMapper;
+import gallery.example.digital_art_gallery.artworks.domain.ArtWorkNotFoundException;
 import gallery.example.digital_art_gallery.artists.infra.entities.ArtistEntity;
 import gallery.example.digital_art_gallery.artists.infra.adapters.ArtistJpaAdapterOut;
 import gallery.example.digital_art_gallery.artworks.domain.ports.ArtWorkManagementPortIn;
@@ -27,7 +29,7 @@ public class ArtWorkService implements ArtWorkManagementPortIn {
     public ArtWorkResponseDTO createArtWork(ArtWorkCreateDTO newArtWork) {
 
         ArtistEntity artist = artistRepository.findById(newArtWork.getArtistId())
-                .orElseThrow(() -> new RuntimeException("Artista com ID " + newArtWork.getArtistId() + " não encontrado."));
+                .orElseThrow(() -> new ArtistNotFoundException(newArtWork.getArtistId()));
 
         ArtWorkEntity artWork = ArtWorkMapper.toEntity(newArtWork);
 
@@ -49,17 +51,17 @@ public class ArtWorkService implements ArtWorkManagementPortIn {
     @Override
     public ArtWorkResponseDTO getArtWorkById(Long artWorkId) {
         ArtWorkEntity artWorkEntity = artWorkRepository.findById(artWorkId)
-                .orElseThrow(() -> new RuntimeException("Obra de arte com ID " + artWorkId + " não encontrada."));
+                .orElseThrow(() -> new ArtWorkNotFoundException(artWorkId));
         return ArtWorkMapper.toResponse(artWorkEntity);
     }
 
     @Override
     public ArtWorkResponseDTO updateArtWork(Long artWorkId, ArtWorkCreateDTO updatedArtWork) {
         ArtWorkEntity existingArtWork = artWorkRepository.findById(artWorkId)
-                .orElseThrow(() -> new RuntimeException("Obra de arte com ID " + artWorkId + " não encontrada."));
+                .orElseThrow(() -> new ArtWorkNotFoundException(artWorkId));
 
         ArtistEntity artist = artistRepository.findById(updatedArtWork.getArtistId())
-                .orElseThrow(() -> new RuntimeException("Artista com ID " + updatedArtWork.getArtistId() + " não encontrado."));
+                .orElseThrow(() -> new ArtistNotFoundException(updatedArtWork.getArtistId()));
 
         existingArtWork.setTitle(updatedArtWork.getTitle());
         existingArtWork.setDescription(updatedArtWork.getDescription());
@@ -73,7 +75,7 @@ public class ArtWorkService implements ArtWorkManagementPortIn {
     @Override
     public void deleteArtWork(Long artWorkId) {
         ArtWorkEntity existingArtWork = artWorkRepository.findById(artWorkId)
-                .orElseThrow(() -> new RuntimeException("Obra de arte com ID " + artWorkId + " não encontrada."));
+                .orElseThrow(() -> new ArtWorkNotFoundException(artWorkId));
         artWorkRepository.delete(existingArtWork);
     }
 
