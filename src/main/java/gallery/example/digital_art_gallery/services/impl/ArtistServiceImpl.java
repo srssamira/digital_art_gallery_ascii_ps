@@ -54,4 +54,11 @@ public class ArtistServiceImpl implements ArtistService {
         return ArtistMapper.toResponse(savedArtist);
     }
 
+    @Override
+    public void deleteArtist(Long artistId) {
+        ArtistEntity existingArtist = artistJpaRepository.findById(artistId)
+                .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
+        artistJpaRepository.delete(existingArtist);
+    }
+
 }

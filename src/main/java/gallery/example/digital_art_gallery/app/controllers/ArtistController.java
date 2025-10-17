@@ -3,7 +3,6 @@ package gallery.example.digital_art_gallery.app.controllers;
 import gallery.example.digital_art_gallery.app.dtos.artist.ArtistCreateDTO;
 import gallery.example.digital_art_gallery.app.dtos.artist.ArtistResponseDTO;
 import gallery.example.digital_art_gallery.services.ArtistService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +40,12 @@ public class ArtistController {
     public ResponseEntity<ArtistResponseDTO> updateArtist(@PathVariable Long artistId, @RequestBody ArtistCreateDTO updatedArtist) {
         ArtistResponseDTO artist = artistService.updateArtist(artistId, updatedArtist);
         return ResponseEntity.status(200).body(artist);
+    }
+
+    @DeleteMapping("/{artistId}")
+    public ResponseEntity<Void> deleteArtist(@PathVariable Long artistId) {
+        artistService.deleteArtist(artistId);
+        return ResponseEntity.status(204).build();
     }
 
 }
