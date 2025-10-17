@@ -70,4 +70,11 @@ public class ArtWorkServiceImpl implements ArtWorkService {
         return ArtWorkMapper.toResponse(savedArtWork);
     }
 
+    @Override
+    public void deleteArtWork(Long artWorkId) {
+        ArtWorkEntity existingArtWork = artWorkJpaRepository.findById(artWorkId)
+                .orElseThrow(() -> new RuntimeException("Obra de arte com ID " + artWorkId + " não encontrada."));
+        artWorkJpaRepository.delete(existingArtWork);
+    }
+
 }

@@ -42,4 +42,10 @@ public class ArtWorkController {
         ArtWorkResponseDTO artWork = artWorkService.updateArtWork(artWorkId, updatedArtWork);
         return ResponseEntity.status(200).body(artWork);
     }
+
+    @DeleteMapping("/{artWorkId}")
+    public ResponseEntity<Void> deleteArtWork(@PathVariable Long artWorkId) {
+        artWorkService.deleteArtWork(artWorkId);
+        return ResponseEntity.status(204).build();
+    }
 }
