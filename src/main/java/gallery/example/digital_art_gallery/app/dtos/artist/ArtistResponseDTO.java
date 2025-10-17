@@ -1,5 +1,6 @@
 package gallery.example.digital_art_gallery.app.dtos.artist;
 
+import gallery.example.digital_art_gallery.app.dtos.artwork.ArtWorkResponseDTO;
 import gallery.example.digital_art_gallery.infra.entities.ArtWorkEntity;
 import jakarta.persistence.*;
 
@@ -14,12 +15,12 @@ public class ArtistResponseDTO {
     private String instagram;
     private String twitter;
     private String website;
-    private List<ArtWorkEntity> artworks;
+    private List<ArtWorkResponseDTO> artworks;
 
     public ArtistResponseDTO() {
     }
 
-    public ArtistResponseDTO(Long id, String name, String bio, String email, String instagram, String twitter, String website, List<ArtWorkEntity> artworks) {
+    public ArtistResponseDTO(Long id, String name, String bio, String email, String instagram, String twitter, String website, List<ArtWorkResponseDTO> artworks) {
         this.id = id;
         this.name = name;
         this.bio = bio;
@@ -86,11 +87,11 @@ public class ArtistResponseDTO {
         this.website = website;
     }
 
-    public List<ArtWorkEntity> getArtworks() {
+    public List<ArtWorkResponseDTO> getArtworks() {
         return artworks;
     }
 
-    public void setArtworks(List<ArtWorkEntity> artworks) {
+    public void setArtworks(List<ArtWorkResponseDTO> artworks) {
         this.artworks = artworks;
     }
 }
