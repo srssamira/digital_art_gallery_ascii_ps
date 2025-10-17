@@ -53,5 +53,21 @@ public class ArtWorkServiceImpl implements ArtWorkService {
         return ArtWorkMapper.toResponse(artWorkEntity);
     }
 
+    @Override
+    public ArtWorkResponseDTO updateArtWork(Long artWorkId, ArtWorkCreateDTO updatedArtWork) {
+        ArtWorkEntity existingArtWork = artWorkJpaRepository.findById(artWorkId)
+                .orElseThrow(() -> new RuntimeException("Obra de arte com ID " + artWorkId + " não encontrada."));
+
+        ArtistEntity artist = artistJpaRepository.findById(updatedArtWork.getArtistId())
+                .orElseThrow(() -> new RuntimeException("Artista com ID " + updatedArtWork.getArtistId() + " não encontrado."));
+
+        existingArtWork.setTitle(updatedArtWork.getTitle());
+        existingArtWork.setDescription(updatedArtWork.getDescription());
+        existingArtWork.setImageUrl(updatedArtWork.getImageUrl());
+        existingArtWork.setArtist(artist);
+
+        ArtWorkEntity savedArtWork = artWorkJpaRepository.save(existingArtWork);
+        return ArtWorkMapper.toResponse(savedArtWork);
+    }
 
 }

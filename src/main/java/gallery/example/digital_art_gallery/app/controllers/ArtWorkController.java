@@ -36,4 +36,10 @@ public class ArtWorkController {
         ArtWorkResponseDTO artWork = artWorkService.getArtWorkById(artWorkId);
         return ResponseEntity.status(200).body(artWork);
     }
+
+    @PutMapping("/{artWorkId}")
+    public ResponseEntity<ArtWorkResponseDTO> updateArtWork(@PathVariable Long artWorkId, @Valid @RequestBody ArtWorkCreateDTO updatedArtWork) {
+        ArtWorkResponseDTO artWork = artWorkService.updateArtWork(artWorkId, updatedArtWork);
+        return ResponseEntity.status(200).body(artWork);
+    }
 }
