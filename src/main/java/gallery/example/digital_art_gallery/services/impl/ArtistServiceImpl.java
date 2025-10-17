@@ -37,4 +37,21 @@ public class ArtistServiceImpl implements ArtistService {
                 .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
         return ArtistMapper.toResponse(artistEntity);
     }
+
+    @Override
+    public ArtistResponseDTO updateArtist(Long artistId, ArtistCreateDTO updatedArtist) {
+        ArtistEntity existingArtist = artistJpaRepository.findById(artistId)
+                .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
+
+        existingArtist.setName(updatedArtist.getName());
+        existingArtist.setBio(updatedArtist.getBio());
+        existingArtist.setInstagram(updatedArtist.getInstagram());
+        existingArtist.setTwitter(updatedArtist.getTwitter());
+        existingArtist.setWebsite(updatedArtist.getWebsite());
+        existingArtist.setEmail(updatedArtist.getEmail());
+
+        ArtistEntity savedArtist = artistJpaRepository.save(existingArtist);
+        return ArtistMapper.toResponse(savedArtist);
+    }
+
 }
