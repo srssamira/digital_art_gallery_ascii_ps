@@ -22,4 +22,19 @@ public class ArtistServiceImpl implements ArtistService {
         ArtistEntity artistEntity = artistJpaRepository.save(ArtistMapper.toEntity(newArtist));
         return ArtistMapper.toResponse(artistEntity);
     }
+
+    @Override
+    public java.util.List<ArtistResponseDTO> getAllArtists() {
+        java.util.List<ArtistEntity> artistEntities = artistJpaRepository.findAll();
+        return artistEntities.stream()
+                .map(ArtistMapper::toResponse)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public ArtistResponseDTO getArtistById(Long artistId) {
+        ArtistEntity artistEntity = artistJpaRepository.findById(artistId)
+                .orElseThrow(() -> new RuntimeException("Artista com ID " + artistId + " não encontrado."));
+        return ArtistMapper.toResponse(artistEntity);
+    }
 }

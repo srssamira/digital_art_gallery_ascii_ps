@@ -5,10 +5,9 @@ import gallery.example.digital_art_gallery.app.dtos.artist.ArtistResponseDTO;
 import gallery.example.digital_art_gallery.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/artists")
@@ -25,4 +24,17 @@ public class ArtistController {
         ArtistResponseDTO createdArtist = artistService.createArtist(newArtist);
         return ResponseEntity.status(201).body(createdArtist);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ArtistResponseDTO>> getAllArtists() {
+        List<ArtistResponseDTO> artists = artistService.getAllArtists();
+        return ResponseEntity.status(200).body(artists);
+    }
+
+    @GetMapping("/{artistId}")
+    public ResponseEntity<ArtistResponseDTO> getArtistById(@PathVariable Long artistId) {
+        ArtistResponseDTO artist = artistService.getArtistById(artistId);
+        return ResponseEntity.status(200).body(artist);
+    }
+
 }

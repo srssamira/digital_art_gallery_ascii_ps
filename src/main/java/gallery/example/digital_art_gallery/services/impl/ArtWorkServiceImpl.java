@@ -21,6 +21,7 @@ public class ArtWorkServiceImpl implements ArtWorkService {
         this.artistJpaRepository = artistJpaRepository;
     }
 
+    @Override
     public ArtWorkResponseDTO createArtWork(ArtWorkCreateDTO newArtWork) {
 
         ArtistEntity artist = artistJpaRepository.findById(newArtWork.getArtistId())
@@ -34,4 +35,6 @@ public class ArtWorkServiceImpl implements ArtWorkService {
 
         return ArtWorkMapper.toResponse(savedArtWork);
     }
+
+
 }
