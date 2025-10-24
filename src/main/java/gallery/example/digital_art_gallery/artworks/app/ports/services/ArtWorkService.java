@@ -6,7 +6,7 @@ import gallery.example.digital_art_gallery.artworks.app.dtos.datemasking.ArtWork
 import gallery.example.digital_art_gallery.artworks.infra.adapters.ArtWorkJpaAdapterOut;
 import gallery.example.digital_art_gallery.artworks.infra.entities.ArtWorkEntity;
 import gallery.example.digital_art_gallery.artworks.infra.mappers.ArtWorkMapper;
-import gallery.example.digital_art_gallery.artworks.domain.ArtWorkNotFoundException;
+import gallery.example.digital_art_gallery.artworks.domain.exceptions.ArtWorkNotFoundException;
 import gallery.example.digital_art_gallery.artists.infra.entities.ArtistEntity;
 import gallery.example.digital_art_gallery.artists.infra.adapters.ArtistJpaAdapterOut;
 import gallery.example.digital_art_gallery.artworks.domain.ports.ArtWorkManagementPortIn;

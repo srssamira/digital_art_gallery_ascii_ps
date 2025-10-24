@@ -1,4 +1,4 @@
-package gallery.example.digital_art_gallery.artworks.domain;
+package gallery.example.digital_art_gallery.artworks.domain.exceptions;
 
 public class ArtWorkNotFoundException extends RuntimeException {
     public ArtWorkNotFoundException(Long artWorkId) {

@@ -1,7 +1,7 @@
 package gallery.example.digital_art_gallery.artworks.infra.config;
 
 import gallery.example.digital_art_gallery.artworks.app.dtos.globalexception.ArtWorkErrorResponseDTO;
-import gallery.example.digital_art_gallery.artworks.domain.ArtWorkNotFoundException;
+import gallery.example.digital_art_gallery.artworks.domain.exceptions.ArtWorkNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
